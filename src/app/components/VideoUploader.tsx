@@ -188,15 +188,16 @@ export function VideoUploader({ onVideoUpdate, currentVideoUrl }: VideoUploaderP
 
             {/* Botones de acción */}
             <div className="flex gap-3">
-              <Button
-                onClick={() => fileInputRef.current?.click()}
-                variant="outline"
+              {/* MÉTODO DIRECTO PARA TABLETS - Label que activa el input */}
+              <label
+                htmlFor="video-file-input-replace"
                 className="flex-1"
-                disabled={isUploading}
               >
-                <Upload className="w-4 h-4 mr-2" />
-                {isUploading ? 'Subiendo...' : 'Reemplazar Video'}
-              </Button>
+                <div className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full ${isUploading ? 'opacity-50 pointer-events-none' : 'cursor-pointer'}`}>
+                  <Upload className="w-4 h-4 mr-2" />
+                  {isUploading ? 'Subiendo...' : 'Reemplazar Video'}
+                </div>
+              </label>
               <Button
                 onClick={handleRemoveVideo}
                 variant="outline"
@@ -209,10 +210,10 @@ export function VideoUploader({ onVideoUpdate, currentVideoUrl }: VideoUploaderP
             </div>
           </div>
         ) : (
-          /* Zona de carga */
-          <div
-            onClick={() => !isUploading && fileInputRef.current?.click()}
-            className={`border-2 border-dashed border-gray-300 rounded-lg p-12 text-center ${
+          /* Zona de carga - MÉTODO DIRECTO CON LABEL */
+          <label
+            htmlFor="video-file-input"
+            className={`block border-2 border-dashed border-gray-300 rounded-lg p-12 text-center ${
               isUploading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-purple-500 hover:bg-purple-50'
             } transition-all`}
           >
@@ -221,14 +222,24 @@ export function VideoUploader({ onVideoUpdate, currentVideoUrl }: VideoUploaderP
               {isUploading ? 'Subiendo video...' : 'Haz clic para seleccionar un video'}
             </p>
             <p className="text-sm text-gray-500">
-              {isUploading ? 'Por favor espera...' : 'o arrastra y suelta aquí'}
+              {isUploading ? 'Por favor espera...' : 'Toca aquí para elegir un archivo'}
             </p>
-          </div>
+          </label>
         )}
 
-        {/* Input oculto */}
+        {/* Input de archivo - Ahora con IDs únicos y accesible */}
         <input
+          id="video-file-input"
           ref={fileInputRef}
+          type="file"
+          accept="video/*"
+          onChange={handleFileSelect}
+          className="hidden"
+          disabled={isUploading}
+        />
+        {/* Input adicional para el botón de reemplazar */}
+        <input
+          id="video-file-input-replace"
           type="file"
           accept="video/*"
           onChange={handleFileSelect}
