@@ -1,0 +1,140 @@
+═══════════════════════════════════════════════════════════
+🚀 COMANDOS PARA SUBIR A GITHUB - COPIA Y PEGA
+═══════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE:
+1. Abre Git Bash o Terminal en la CARPETA DE TU PROYECTO
+2. Copia y pega estos comandos UNO POR UNO
+3. Reemplaza TU_USUARIO y TU_REPO con tus datos reales
+
+═══════════════════════════════════════════════════════════
+
+PASO 1: Verificar que estás en la carpeta correcta
+───────────────────────────────────────────────────────────
+ls
+
+✅ Debes ver: package.json, index.html, src/, etc.
+❌ Si no los ves, navega a la carpeta correcta con: cd ruta/a/tu/proyecto
+
+═══════════════════════════════════════════════════════════
+
+PASO 2: Inicializar Git
+───────────────────────────────────────────────────────────
+git init
+
+═══════════════════════════════════════════════════════════
+
+PASO 3: Configurar branch principal
+───────────────────────────────────────────────────────────
+git branch -M main
+
+═══════════════════════════════════════════════════════════
+
+PASO 4: Agregar todos los archivos
+───────────────────────────────────────────────────────────
+git add .
+
+═══════════════════════════════════════════════════════════
+
+PASO 5: Ver qué archivos se van a subir (VERIFICAR)
+───────────────────────────────────────────────────────────
+git status
+
+⚠️ NO DEBES VER "node_modules/" en la lista
+✅ Si lo ves, hay un problema con .gitignore
+
+═══════════════════════════════════════════════════════════
+
+PASO 6: Crear commit
+───────────────────────────────────────────────────────────
+git commit -m "Fix: Sistema completo con panel de capuchinos"
+
+═══════════════════════════════════════════════════════════
+
+PASO 7: Conectar con GitHub (REEMPLAZA TU_USUARIO y TU_REPO)
+───────────────────────────────────────────────────────────
+
+Ejemplo de URL: https://github.com/juanperez/cafeteria-system
+→ TU_USUARIO = juanperez
+→ TU_REPO = cafeteria-system
+
+Ejecuta:
+
+git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
+
+Si dice "remote origin already exists", ejecuta esto en su lugar:
+
+git remote set-url origin https://github.com/TU_USUARIO/TU_REPO.git
+
+═══════════════════════════════════════════════════════════
+
+PASO 8: Subir a GitHub (FORZAR para sobrescribir)
+───────────────────────────────────────────────────────────
+git push -f origin main
+
+⚠️ Si pide usuario/contraseña:
+- Usuario: tu nombre de usuario de GitHub
+- Contraseña: usa un Personal Access Token (no tu contraseña normal)
+  → Ve a GitHub → Settings → Developer settings → Personal access tokens
+
+═══════════════════════════════════════════════════════════
+
+PASO 9: Verificar en GitHub
+───────────────────────────────────────────────────────────
+
+1. Ve a tu repositorio en GitHub
+2. ✅ Debes ver package.json en la raíz
+3. ✅ Debes ver index.html en la raíz
+4. ✅ Debes ver carpeta src/
+5. ❌ NO debes ver carpeta node_modules/
+
+═══════════════════════════════════════════════════════════
+
+PASO 10: Configurar Variables en Vercel
+───────────────────────────────────────────────────────────
+
+1. Ve a Vercel.com → Tu proyecto → Settings → Environment Variables
+
+2. Agrega estas 2 variables:
+
+   VITE_SUPABASE_URL
+   Valor: tu_url_de_supabase (ejemplo: https://xxxxx.supabase.co)
+
+   VITE_SUPABASE_ANON_KEY
+   Valor: tu_clave_anonima_de_supabase (ejemplo: eyJhbGci...)
+
+3. Guarda y redeploy
+
+═══════════════════════════════════════════════════════════
+
+PASO 11: Redeploy en Vercel
+───────────────────────────────────────────────────────────
+
+1. Ve a Vercel → Deployments
+2. Click en el botón "..." del último deployment
+3. Click en "Redeploy"
+4. Espera 2-3 minutos
+
+═══════════════════════════════════════════════════════════
+
+✅ LISTO!
+═══════════════════════════════════════════════════════════
+
+Si todo salió bien:
+- El build en Vercel debería ser exitoso
+- La app debería funcionar en la URL de Vercel
+- Los datos se deberían guardar en Supabase
+
+═══════════════════════════════════════════════════════════
+
+🆘 SI ALGO FALLA
+═══════════════════════════════════════════════════════════
+
+1. Copia el mensaje de error completo de Vercel
+2. Ejecuta "git status" y comparte el resultado
+3. Verifica que package.json exista en GitHub
+
+═══════════════════════════════════════════════════════════
+
+FIN - ¡Buena suerte! 🍀
+═══════════════════════════════════════════════════════════
